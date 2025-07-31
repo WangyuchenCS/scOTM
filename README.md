@@ -119,7 +119,7 @@ embed_adata = scg.tasks.embed_data(
 
 ## 🧬 Extracting Drug or Molecular Embeddings
 
-We support extracting molecular embeddings from **SMILES strings** using **ChemBERTa**, and protein embeddings from **FASTA sequences** using **ESM2**.
+We support extracting drug embeddings from **SMILES strings** using **ChemBERTa**, and molecular embeddings from **sequences** using **ESM2**.
 
 ###  1. ChemBERTa Embeddings (for Drug)
 
