@@ -12,27 +12,25 @@
 
 ## 📖 Overview
 
-This project provides:
+This project provides reproducible setup for results in the paper, including:
 
 * Environment Setup
 * Preprocessing and handling of single-cell RNA-seq data
 * Extraction of LLM embeddings
 * Model training and evaluation scripts
-* Reproducible setup for results in the paper
 
 ---
 
-## 📁 Repository Structure
+## 💼 Repository Structure
 
 ```
-├── data/                        # Input datasets (.h5ad)
-├── checkpoints/                # Pretrained models (e.g., scGPT)
-├── scripts/                    # Training, evaluation, utility scripts
-├── results/                    # Output embeddings, metrics, figures
-├── extract_scgpt_embedding.py  # Optional: embedding script
-├── scPerturbation.yml          # Full Conda + pip environment file
-├── requirements.txt            # pip fallback
+├── data/                   # Input datasets (.h5ad)
+├── LLM/                    # code for extracting embedding of LLM models
+├── src/                    # Training, evaluation, utility scripts
+├── env/                    # Environment file
+├── tutorial.ipynb          # Full tutorial
 └── README.md
+
 ```
 
 ---
@@ -44,15 +42,15 @@ This project is built with Conda and Python 3.8+. We recommend using the provide
 ### ✅ Install via Conda
 
 ```bash
-conda env create -f scPerturbation.yml
-conda activate scPerturbation
+conda env create -f scOTM.yml
+conda activate scOTM
 ```
 
 ---
 
-## 🧬 Extracting Cell Embeddings using scGPT
+## 🌟 Extracting Embeddings from scGPT
 
-This project requires **cell-level embeddings** extracted using the pretrained [scGPT](https://github.com/bowang-lab/scGPT) model.
+This project requires **cell-level embeddings** extracted from the pretrained [scGPT](https://github.com/bowang-lab/scGPT) model.
 
 ### ✅ Step 1: Install scGPT
 
@@ -62,7 +60,7 @@ cd scGPT
 pip install -e .
 ```
 
-### 📅 Step 2: Download Pretrained Models
+### ⏬ Step 2: Download Pretrained Models
 
 ```bash
 # Example: replace with correct IDs or links
@@ -119,7 +117,7 @@ embed_adata = scg.tasks.embed_data(
 ```
 
 
-## 🔬 Extracting Drug or Molecular Embeddings
+## 🧬 Extracting Drug or Molecular Embeddings
 
 We support extracting molecular embeddings from **SMILES strings** using **ChemBERTa**, and protein embeddings from **FASTA sequences** using **ESM2**.
 
@@ -141,7 +139,7 @@ python LLM/extract_drug_embedding.py \
 ```
 
 
-### 🔬 2. ESM2 Embeddings (for Molecular)
+###  2. ESM2 Embeddings (for Molecular)
 
 Install ESM2 dependencies:
 
@@ -166,7 +164,7 @@ The output will be a `(1, embedding_dim)` tensor for single molecular.
 
 ---
 
-## 🚀 Model Training & Evaluation
+## 🔥 Model Training & Evaluation
 
 After preparing the embeddings, run model training:
 
@@ -195,7 +193,7 @@ comming soon
 
 ---
 
-## 😋 Acknowledgements
+## 👏 Acknowledgements
 
 This project builds upon the excellent works, including:
 
