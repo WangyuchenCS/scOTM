@@ -119,12 +119,11 @@ embed_adata = scg.tasks.embed_data(
 ```
 
 
-
-## 🎉 Extracting Molecular and Protein Embeddings
+## 🔬 Extracting Drug or Molecular Embeddings
 
 We support extracting molecular embeddings from **SMILES strings** using **ChemBERTa**, and protein embeddings from **FASTA sequences** using **ESM2**.
 
-###  1. ChemBERTa Embeddings (for Molecules)
+###  1. ChemBERTa Embeddings (for Drug)
 
 Install ChemBERTa dependencies:
 
@@ -135,15 +134,14 @@ pip install transformers rdkit pandas
 Run embedding extraction:
 
 ```bash
-python scripts/extract_molecule_embedding.py \
+python LLM/extract_drug_embedding.py \
     --smiles "CC(=O)OC1=CC=CC=C1C(=O)O" \
     --model_name "seyonec/ChemBERTa-zinc-base-v1" \
-    --output_path results/mol_embedding.npy
+    --output_path drug_embedding.npy
 ```
 
-You can also provide a `.csv` file with a `smiles` column for batch extraction.
 
-### 🔬 2. ESM2 Embeddings (for Proteins)
+### 🔬 2. ESM2 Embeddings (for Molecular)
 
 Install ESM2 dependencies:
 
@@ -154,22 +152,15 @@ pip install fair-esm biopython torch
 Run embedding extraction:
 
 ```bash
-python scripts/extract_protein_embedding.py \
-    --fasta data/example_protein.fasta \
+python LLM/extract_molecular_embedding.py \
+    --uniprot_id P01574 \
+    --model_path /home/grads/ywang2542/RNA2Prot/Data/esm2_t33_650M_UR50D.pt \
     --model_name esm2_t33_650M_UR50D \
-    --output_path results/protein_embedding.pt
+    --output_path molecular_embedding.npy
+
 ```
 
-The output will be a `(1, embedding_dim)` tensor for single sequences, or batched for multiple.
-
----
-
-
-
-
-
-
-
+The output will be a `(1, embedding_dim)` tensor for single molecular.
 
 
 
@@ -180,55 +171,40 @@ The output will be a `(1, embedding_dim)` tensor for single sequences, or batche
 After preparing the embeddings, run model training:
 
 ```bash
-python scripts/train_model.py \
-    --data_path data/processed.h5ad \
-    --embedding_key X_scGPT \
-    --output_dir results/ \
-    --batch_size 128 \
-    --epochs 100
+python src/main.py
 ```
+script including:
 
-> Replace `train_model.py` and args as needed for your method.
+🧬 Loading and preprocessing scRNA-seq perturbation datasets
+🧠 Initializing and training the scREPA model
+🔮 Predicting perturbation responses for unseen cell types or conditions
+📊 Visualizing and evaluating model performance
 
----
-
-## 📈 Results & Reproducibility
-
-To reproduce the results in the paper:
-
-1. Download raw data or use provided `.h5ad` files
-2. Run preprocessing and scGPT embedding
-3. Train the model using provided scripts
-
-Results will be saved to `results/` including metrics and plots.
+A complete training and evaluation pipeline is provided in the tutorial.ipynb
 
 ---
+
 
 ## 📄 Citation
 
 If you find this work useful, please cite:
 
 ```bibtex
-@article{YourCitation2025,
-  title={Your Paper Title},
-  author={Your Name and Collaborators},
-  journal={Journal Name},
-  year={2025},
-  doi={...}
-}
+comming soon
 ```
 
 ---
 
 ## 😋 Acknowledgements
 
-This project builds upon the excellent [scGPT](https://github.com/bowang-lab/scGPT) model from Bo Wang's lab.
+This project builds upon the excellent works, including:
+
+- [scGPT](https://github.com/bowang-lab/scGPT) for cell embedding
+- [ESM2](https://github.com/facebookresearch/esm) for protein sequence embeddings
+- [ChemBERTa](https://huggingface.co/seyonec/ChemBERTa-zinc-base-v1) for molecular embeddings from SMILES
 
 ---
 
 ## 📬 Contact
 
-For questions or contributions, feel free to open an issue or contact:
-
-* **Your Name** – [your.email@domain.edu](mailto:your.email@domain.edu)
-* \[Your institution/lab page]
+For questions or contributions, feel free to open an issue.
