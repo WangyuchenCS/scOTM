@@ -1,6 +1,6 @@
 # 🚀 scOTM: A Deep Learning Framework for Predicting Single-Cell Perturbation Responses with Large Language Models
 
-**\[scOTM]: \[Modeling drug-induced transcriptional responses at the single-cell level is essential for advancing human healthcare, particularly in understanding disease mechanisms, assessing therapeutic efficacy, and anticipating adverse effects. We propose scOTM, a deep learning framework designed to predict single-cell perturbation responses from unpaired data, focusing on generalization to unseen cell types. scOTM integrates prior biological knowledge of perturbations and cellular states, derived from large language models specialized for molecular and single-cell corpora.]**
+**Modeling drug-induced transcriptional responses at the single-cell level is essential for advancing human healthcare, particularly in understanding disease mechanisms, assessing therapeutic efficacy, and anticipating adverse effects. We propose scOTM, a deep learning framework designed to predict single-cell perturbation responses from unpaired data, focusing on generalization to unseen cell types. scOTM integrates prior biological knowledge of perturbations and cellular states, derived from large language models specialized for molecular and single-cell corpora.**
 
 > This repository contains code and pretrained resources for our paper:
 > **"\[scOTM: A Deep Learning Framework for Predicting Single-Cell Perturbation Responses with Large Language Models]"**
