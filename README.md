@@ -1,6 +1,6 @@
-# scOTM: A Deep Learning Framework for Predicting Single-Cell Perturbation Responses with Large Language Models
+# 🚀 scOTM: A Deep Learning Framework for Predicting Single-Cell Perturbation Responses with Large Language Models
 
-**\[scOTM]: \[Modeling drug-induced transcriptional responses at the single-cell level is essential for advancing human healthcare, particularly in understanding disease mechanisms, assessing therapeutic efficacy, and anticipating adverse effects. However, existing approaches often impose a rigid constraint by enforcing pointwise alignment of latent representations to a standard normal prior, which limits expressiveness and results in biologically uninformative embeddings, especially in complex biological systems. Additionally, many methods inadequately address the challenges of unpaired data, typically relying on naive averaging strategies that ignore cell-type specificity and intercellular heterogeneity. To overcome these limitations, we propose scOTM, a deep learning framework designed to predict single-cell perturbation responses from unpaired data, focusing on generalization to unseen cell types. scOTM integrates prior biological knowledge of perturbations and cellular states, derived from large language models specialized for molecular and single-cell corpora. These informative representations are incorporated into a variational autoencoder with maximum mean discrepancy regularization, allowing flexible modeling of transcriptional shifts without imposing a strict constraint of alignment to a standard normal prior. scOTM further employs optimal transport to establish an efficient and interpretable mapping between control and perturbed distributions, effectively capturing transcriptional shifts underlying response variation. Extensive experiments demonstrate that scOTM outperforms existing methods in predicting whole-transcriptome responses and identifying top differentially expressed genes. Furthermore, scOTM exhibits superior robustness in data-limited settings and strong generalization capabilities across cell types.]**
+**\[scOTM]: \[Modeling drug-induced transcriptional responses at the single-cell level is essential for advancing human healthcare, particularly in understanding disease mechanisms, assessing therapeutic efficacy, and anticipating adverse effects. We propose scOTM, a deep learning framework designed to predict single-cell perturbation responses from unpaired data, focusing on generalization to unseen cell types. scOTM integrates prior biological knowledge of perturbations and cellular states, derived from large language models specialized for molecular and single-cell corpora.]**
 
 > This repository contains code and pretrained resources for our paper:
 > **"\[scOTM: A Deep Learning Framework for Predicting Single-Cell Perturbation Responses with Large Language Models]"**
@@ -117,6 +117,61 @@ embed_adata = scg.tasks.embed_data(
 )
 # Result: embed_adata.obsm["X_scGPT"]
 ```
+
+
+
+## 🎉 Extracting Molecular and Protein Embeddings
+
+We support extracting molecular embeddings from **SMILES strings** using **ChemBERTa**, and protein embeddings from **FASTA sequences** using **ESM2**.
+
+###  1. ChemBERTa Embeddings (for Molecules)
+
+Install ChemBERTa dependencies:
+
+```bash
+pip install transformers rdkit pandas
+```
+
+Run embedding extraction:
+
+```bash
+python scripts/extract_molecule_embedding.py \
+    --smiles "CC(=O)OC1=CC=CC=C1C(=O)O" \
+    --model_name "seyonec/ChemBERTa-zinc-base-v1" \
+    --output_path results/mol_embedding.npy
+```
+
+You can also provide a `.csv` file with a `smiles` column for batch extraction.
+
+### 🔬 2. ESM2 Embeddings (for Proteins)
+
+Install ESM2 dependencies:
+
+```bash
+pip install fair-esm biopython torch
+```
+
+Run embedding extraction:
+
+```bash
+python scripts/extract_protein_embedding.py \
+    --fasta data/example_protein.fasta \
+    --model_name esm2_t33_650M_UR50D \
+    --output_path results/protein_embedding.pt
+```
+
+The output will be a `(1, embedding_dim)` tensor for single sequences, or batched for multiple.
+
+---
+
+
+
+
+
+
+
+
+
 
 ---
 

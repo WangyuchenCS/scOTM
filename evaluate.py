@@ -215,14 +215,14 @@ def draw_reg_plot(eval_adata,
         )
     if top_gene_list is not None:
         data_deg = data_df.loc[top_gene_list, :]
-        r_top = round(data_deg['case'].corr(data_deg['predict'], method='pearson'), 3)
+        r_top = round(data_deg['case'].corr(data_deg['predict'], method='pearson'), 2)
         xt = 0.1 * np.max(data_df['case'])
         yt = 0.85 * np.max(data_df['predict'])
-        ax.text(xt, yt, s='$R^2_{top 100 genes}$=' + str(round(r_top * r_top, 3)), fontsize=fontsize, color='black')
-    r = round(data_df['case'].corr(data_df['predict'], method='pearson'), 3)
+        ax.text(xt, yt, s='$R^2_{top 100 genes}$=' + str(round(r_top * r_top, 2)), fontsize=fontsize, color='black')
+    r = round(data_df['case'].corr(data_df['predict'], method='pearson'), 2)
     xt = 0.1 * np.max(data_df['case'])
     yt = 0.75 * np.max(data_df['predict'])
-    ax.text(xt, yt, s='$R^2_{all genes}$=' + str(round(r * r, 3)), fontsize=fontsize, color='black')
+    ax.text(xt, yt, s='$R^2_{all genes}$=' + str(round(r * r, 2)), fontsize=fontsize, color='black')
     if title:
         plt.title(title)
     else:
