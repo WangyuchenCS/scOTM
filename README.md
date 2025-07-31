@@ -65,8 +65,8 @@ pip install -e .
 ```bash
 # Example: replace with correct IDs or links
 wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=1x1SfmFdI-zcocmqWAd7ZTC9CTEAVfKZq' -O best_model.pth
-wget  --no-check-certificate 'https://drive.google.com/uc?export=download&id=1jfT_T5n8WNbO9QZcLWObLdRG8lYFKH-Q' -O vocab.json
-wget  --no-check-certificate 'https://drive.google.com/uc?export=download&id=15TEZmd2cZCrHwgfE424fgQkGUZCXiYrR' -O args.json
+wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=1jfT_T5n8WNbO9QZcLWObLdRG8lYFKH-Q' -O vocab.json
+wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=15TEZmd2cZCrHwgfE424fgQkGUZCXiYrR' -O args.json
 ```
 
 ### 📊 Step 3: Preprocess Input Expression Data
