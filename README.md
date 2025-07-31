@@ -81,7 +81,7 @@ import scanpy as sc
 import numpy as np
 import sys
 
-smaple_data_path = '../../data/adata.h5ad'
+smaple_data_path = '../data/PBMC.h5ad'
 adata = sc.read_h5ad(smaple_data_path)
 
 gene_col = "Gene Symbol"
@@ -133,11 +133,11 @@ Run embedding extraction:
 
 ```bash
 python LLM/extract_drug_embedding.py \
-    --smiles "CC(=O)OC1=CC=CC=C1C(=O)O" \
+    --smiles "CCCC" \  
     --model_name "seyonec/ChemBERTa-zinc-base-v1" \
     --output_path drug_embedding.npy
 ```
-
+note that change smiles according to your needs.
 
 ###  2. ESM2 Embeddings (for Molecular)
 
@@ -152,7 +152,6 @@ Run embedding extraction:
 ```bash
 python LLM/extract_molecular_embedding.py \
     --uniprot_id P01574 \
-    --model_path /home/grads/ywang2542/RNA2Prot/Data/esm2_t33_650M_UR50D.pt \
     --model_name esm2_t33_650M_UR50D \
     --output_path molecular_embedding.npy
 
